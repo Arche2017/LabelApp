@@ -1,0 +1,322 @@
+{
+	"info": {
+		"_postman_id": "3b3d0791-3067-4d88-8d36-13316db4a7df",
+		"name": "labelApp_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User_register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://labelApp/register?name=Artur&email=artur.app@mail.e&password=password&role_id=2&_token={{token}}&password_confirmation=password",
+					"protocol": "http",
+					"host": [
+						"labelApp"
+					],
+					"path": [
+						"register"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Artur"
+						},
+						{
+							"key": "email",
+							"value": "artur.app@mail.e"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						},
+						{
+							"key": "role_id",
+							"value": "2"
+						},
+						{
+							"key": "_token",
+							"value": "{{token}}"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "password"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterForm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const regData=pm.response.json();\r",
+							"pm.environment.set('token', regData.token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://labelApp/register",
+					"protocol": "http",
+					"host": [
+						"labelApp"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://labelApp/logout?_token={{token}}",
+					"protocol": "http",
+					"host": [
+						"labelApp"
+					],
+					"path": [
+						"logout"
+					],
+					"query": [
+						{
+							"key": "_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginForm",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const loginData=pm.response.json();\r",
+							"pm.environment.set('token', loginData.token)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://labelApp/login",
+					"protocol": "http",
+					"host": [
+						"labelApp"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const loginData=pm.response.json();\r",
+							"pm.environment.set('user_id', loginData.id)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://posts/login?email=artur@mail.e&password=password&_token={{token}}",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "artur@mail.e"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						},
+						{
+							"key": "_token",
+							"value": "{{token}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllLabels",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://posts/all",
+					"protocol": "http",
+					"host": [
+						"posts"
+					],
+					"path": [
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddLabel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://labelApp/addLabel?label=label1,label2,label3&type=user&user_id=1&company_id=null&site_id=null",
+					"protocol": "http",
+					"host": [
+						"labelApp"
+					],
+					"path": [
+						"addLabel"
+					],
+					"query": [
+						{
+							"key": "label",
+							"value": "label1,label2,label3"
+						},
+						{
+							"key": "type",
+							"value": "user"
+						},
+						{
+							"key": "user_id",
+							"value": "1"
+						},
+						{
+							"key": "company_id",
+							"value": "null"
+						},
+						{
+							"key": "site_id",
+							"value": "null"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findUserLabels",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
